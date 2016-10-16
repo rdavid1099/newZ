@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     get 'users/dashboard', to: 'users#show'
   end
 
+  namespace :admin do
+    get 'users/dashboard', to: 'users#show'
+  end
+
   get 'users/dashboard', to: 'users#show'
 
   get '/auth/twitter', as: :twitter_login
