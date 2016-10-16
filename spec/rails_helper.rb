@@ -19,10 +19,10 @@ VCR.configure do |config|
   config.hook_into :webmock # or :fakeweb
 end
 
-def mock_twitter_login
+def mock_twitter_login(params = Hash.new, uid = '787348724179533825')
   OmniAuth.config.test_mode = true
 
-  OmniAuth.config.mock_auth[:twitter] = omniauth_mock
+  OmniAuth.config.mock_auth[:twitter] = omniauth_mock(params, uid)
 end
 
 def omniauth_mock(params = Hash.new, uid = '787348724179533825')
@@ -57,6 +57,7 @@ def create_user(params = Hash.new, amount = 1)
       screen_name: "#{params[:screen_name]}#{n}" || 'TestTwitter',
       location: "#{params[:location]}#{n}" || 'Denver, CO'
     }
+    mock_twitter_login(info, n) if amount == 1
     users << User.from_omniauth(omniauth_mock(info, n))
   end
   users
