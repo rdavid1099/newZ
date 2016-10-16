@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  def self.from_omniauth(auth_info)
+  enum role: [:viewer, :producer, :admin]
+
+  def self.from_omniauth(auth_info, role = nil)
     user = User.find_or_create_by(uid: auth_info.uid)
     user.name = auth_info.extra.raw_info.name
     user.screen_name = auth_info.extra.raw_info.screen_name
@@ -8,6 +10,7 @@ class User < ApplicationRecord
     user.twitter_url = auth_info.info.urls['Twitter']
     user.oauth_token = auth_info.credentials.token
     user.oauth_secret = auth_info.credentials.secret
+    user.role = role || user.role || 0
     user.save
     user
   end

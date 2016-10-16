@@ -58,7 +58,7 @@ def create_user(params = Hash.new, amount = 1)
       location: "#{params[:location]}#{n}" || 'Denver, CO'
     }
     mock_twitter_login(info, n) if amount == 1
-    users << User.from_omniauth(omniauth_mock(info, n))
+    users << User.from_omniauth(omniauth_mock(info, n), params[:role])
   end
   users
 end
