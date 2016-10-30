@@ -69,3 +69,7 @@ def create_user(params = Hash.new, amount = 1)
   end
   users
 end
+
+def create_station(params = Hash.new, amount = 1)
+
+end
