@@ -60,9 +60,9 @@ def create_user(params = Hash.new, amount = 1)
   users = Array.new
   amount.times do |n|
     info = {
-      name: "#{params[:name]}#{n}" || 'Twitter Tester',
-      screen_name: "#{params[:screen_name]}#{n}" || 'TestTwitter',
-      location: "#{params[:location]}" || 'Denver, CO'
+      name: (params[:name] || 'Twitter Tester') + n.to_s,
+      screen_name: (params[:screen_name] || 'TestTwitter') + n.to_s,
+      location: (params[:location] || 'Denver, CO')
     }
     mock_twitter_login(info, n) if amount == 1
     users << User.from_omniauth(omniauth_mock(info, n), params[:role])
@@ -71,5 +71,16 @@ def create_user(params = Hash.new, amount = 1)
 end
 
 def create_station(params = Hash.new, amount = 1)
-
+  stations = Array.new
+  amount.times do |n|
+    info = {
+      name: (params[:name] || 'TestStation') + n.to_s,
+      city: (params[:city] || 'Denver'),
+      state: (params[:state] || 'CO'),
+      zipcode: (params[:zipcode] || '80201'),
+      url: (params[:url] || 'http://www.teststation.com') + n.to_s
+    }
+    stations << Station.create(info)
+  end
+  stations
 end

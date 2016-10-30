@@ -1,0 +1,6 @@
+<h1>News Stations Broadcasting to <%= current_user.location %></h1>
+<% if @nearby_stations.empty? %>
+  <%= render partial: 'no_nearby_stations' %>
+<% else %>
+  <%= render partial: 'subscribe_form' %>
+<% end %>
