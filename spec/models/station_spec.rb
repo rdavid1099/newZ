@@ -8,6 +8,10 @@ RSpec.describe Station, type: :model do
     expect(station.logo_path).to eq('default photo')
   end
 
+  it 'finds all nearby stations by location' do
+    
+  end
+
   context 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:name) }

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   end
 
   get 'users/dashboard', to: 'users#show'
+  namespace :users  do
+    get '/stations/subscriptions/new', to: 'stations#new', as: 'new_station'
+  end
 
   get '/auth/twitter', as: :twitter_login
   get '/auth/twitter/callback', to: 'sessions#create'

@@ -13,7 +13,7 @@ RSpec.feature 'unsubscribed user logs in' do
 
     visit users_dashboard_path
 
-    expect(page).to have_content('You are currently not subscribed to any local stations')
+    expect(page).to have_content('You are currently not subscribed to any stations')
     click_on 'Denver, CO'
 
     expect(page).to have_content('News Stations in Denver, CO')

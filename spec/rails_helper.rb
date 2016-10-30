@@ -62,7 +62,7 @@ def create_user(params = Hash.new, amount = 1)
     info = {
       name: "#{params[:name]}#{n}" || 'Twitter Tester',
       screen_name: "#{params[:screen_name]}#{n}" || 'TestTwitter',
-      location: "#{params[:location]}#{n}" || 'Denver, CO'
+      location: "#{params[:location]}" || 'Denver, CO'
     }
     mock_twitter_login(info, n) if amount == 1
     users << User.from_omniauth(omniauth_mock(info, n), params[:role])
