@@ -1,0 +1,5 @@
+<%= form_tag users_stations_subscriptions_path %>
+  <% @nearby_stations.each do |station| %>
+    <%= check_box_tag station.name, station.id %> <%= station.name %><br>
+  <% end %>
+  <br><%= submit_tag "Subscribe" %>

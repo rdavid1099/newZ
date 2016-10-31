@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :stations_users
+  has_many :stations, through: :stations_users
   enum role: [:viewer, :producer, :admin]
 
   def self.from_omniauth(auth_info, role = nil)
