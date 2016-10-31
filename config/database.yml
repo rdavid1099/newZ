@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: newZ_production
-  username: newZ
+  database: newz_production
+  username: newz
   password: <%= ENV['NEWZ_DATABASE_PASSWORD'] %>
