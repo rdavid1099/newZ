@@ -1,0 +1,40 @@
+AS A VIEWER...
+When I visit the root page
+I expect to see a stylish page describing the functionality and mission of NewZ
+And I expect to see large buttons 'More Information' and 'Login Using Twitter'
+
+When I click on the 'More Information'
+I expect to see a more in-depth description of NewZ
+And I expect to see a list of cities and stations subscribing to the service
+
+When I click on 'Login Using Twitter' in the navbar
+I expect to be taken to the Twitter Login page and asked to grant permission for Twitter to access basic profile information
+
+After granting access to Twitter information
+I expect to be taken to a page listing all of the subscribed stations near my location
+
+If I don't have a location listed on my Twitter profile
+I expect to be taken to a page asking me to enter my zipcode or City and State where I live
+
+If there are no subscribed stations near me
+I expect to be taken to the 'Global Community' page
+On the 'Global Community' page
+I expect to have all the functionality of a regular user
+EXCEPT I can only pitch stories to the 'Global Community' and cannot influence or interact with 'Local Communities'
+
+If I have a location entered on my Twitter page and I have at least one station near me subscribed to the service
+I expect to be able to check a box subscribing to one or many of the stations listed
+And I expect to click the 'Subscribe' button to conclude the initial login process
+
+After clicking the 'Subscribe' button
+I expect to be taken to my dashboard page
+Where I expect to see the top 5 trending CNN headlines
+And I expect to see the 10 most recent pitches I made OR commented on
+
+On my dashboard page
+I expect to see a link taking me my 'Inbox'
+I also expect to see an 'Edit My Profile' link
+
+In my navbar
+I expect to see my Twitter username, a drop-down menu of all the stations I am subscribed to, an envelope taking me to DMs, a pitch a story button, a logout button
+and I expect all of the buttons and functionality to be identical to that of Producers

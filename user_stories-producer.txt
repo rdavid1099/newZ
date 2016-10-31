@@ -1,0 +1,60 @@
+AS A PRODUCER...
+When I click login
+and I enter my twitter username and password
+I expect to be taken to my dashboard page
+
+When I click on my username
+I expect to be taken to my dashboard
+Where I expect to see the top 5 CNN trending headlines
+and the stories I have 'pitched' to my viewers
+and stories viewers have pitched to me
+
+When I click 'Pitch A Story' from the navbar
+I expect to land on the storyboard
+I expect to see a search bar - used for finding stories in CNN's database
+I also expect to see a place to enter my own url linking to a story
+
+When I choose a CNN story to pitch to my audience
+I expect to click 'Pitch Story'
+Then I expect to be taken to the 'Community Board' where the most recent story (mine) is at the top
+
+When I choose to fill in my own custom story
+I fill in the URL,
+          the story's headline,
+          a brief description of the story,
+          click 'Pitch Story'
+Then I expect to be taken to the 'Community Board' where the most recent story (mine) is at the top
+
+When I click on 'Community Board' in the navbar
+I expect to land on the 'Community Board'
+I expect to see pitched stories of viewers and producers in descending order from when they were submitted
+and I expect every story to have a Thumbs Up and Thumbs Down icon with corresponding numbers with votes
+and I expect every story to have a 'Comments' link with the number of corresponding comments next to it
+and I expect to be able to click on the headline of every story and taken to that story's website
+
+When I click on the 'Thumbs Up' or 'Thumbs Down'
+I expect nothing to happen
+
+When I click on the 'Comments' link
+I expect to be taken to a page showing all comments
+I expect the comments, and their children, to be properly indented
+I expect for the comments to have pagination
+I expect viewer usernames the have a proceeding '[V]' and producer usernames to have a proceeding '[P]'
+I expect every comment to have the option to 'Reply' along with 'Up Vote' and 'Down Vote'
+
+When I click on a user's username (producer or viewer)
+I expect to be taken to their profile page
+I expect to see their five most recent comments and the headlines of the stories commented on
+and I expect to see a list of the 10 most recent headlines of the the stories they pitched
+and I expect to see an 'Envelope' with the words 'Direct Message' next to their username and basic profile info
+
+When I click on the 'Direct Message' link on a user's (viewer or producer) dashboard
+I expect to be taken to a message page
+And I expect to fill out the 'Header' section and the body 'Body' section
+And I expect to click the 'Send Message' button
+And I expect to be taken to my 'Inbox' displaying all recent 'Sent' messages
+
+When I click on the 'Envelope' in my navbar
+I expect to be taken to my Direct Message inbox
+and I expect to see all the recent messages sent to me
+and I expect to see a 'Sent' button (JQuery) to show messages I sent
