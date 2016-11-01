@@ -13,7 +13,12 @@ class Users::StationsController < ApplicationController
   end
 
   def destroy
-
+    current_user.station_unsubscribe(params[:station_id])
+    if params[:redirect]
+      redirect_to station_path(Station.find(params[:station_id]).call_letters)
+    else
+      redirect_to users_dashboard_path
+    end
   end
 
   private

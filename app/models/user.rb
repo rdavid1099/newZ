@@ -26,4 +26,8 @@ class User < ApplicationRecord
       stations << Station.find(id)
     end
   end
+
+  def station_unsubscribe(station_id)
+    stations_users.find_by(station_id: station_id).destroy!
+  end
 end
