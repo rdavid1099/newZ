@@ -21,6 +21,16 @@ RSpec.describe User, type: :model do
     expect(user.subscribed?(station.id)).to eq(true)
   end
 
+  it 'unsubscribes viewers from stations' do
+    user = create_user.first
+    station = create_station.first
+    user.stations << station
+    user.station_unsubscribe(station.id)
+
+    expect(user.subscribed?(station.id)).to eq(false)
+    expect(user.stations.count).to eq(0)
+  end
+
   context 'validations' do
     it { is_expected.to have_many(:stations) }
   end
