@@ -5,7 +5,15 @@ class Users::StationsController < ApplicationController
 
   def create
     current_user.set_station_subscriptions(station_ids) unless station_ids.empty?
-    redirect_to users_dashboard_path
+    if params[:redirect]
+      redirect_to station_path(Station.find(station_ids.first).call_letters)
+    else
+      redirect_to users_dashboard_path
+    end
+  end
+
+  def destroy
+
   end
 
   private
