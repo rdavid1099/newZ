@@ -5,6 +5,7 @@ class Station < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :url, presence: true, uniqueness: true
   validates :logo_path, presence: true
+  validates :call_letters, presence: true, uniqueness: true
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'users/dashboard', to: 'users#show'
   end
 
+  resources :stations, only: [:show]
   resources :community, only: [:index]
 
   get 'users/dashboard', to: 'users#show'
