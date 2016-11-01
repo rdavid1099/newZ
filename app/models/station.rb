@@ -17,6 +17,10 @@ class Station < ApplicationRecord
     "#{city}, #{state}. #{zipcode}"
   end
 
+  def num_of_subscribers
+    users.where('role = ?', '0').count
+  end
+
   private
     def set_logo
       self.logo_path ||= 'default photo'

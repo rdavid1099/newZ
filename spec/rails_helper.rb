@@ -22,6 +22,11 @@ RSpec.configure do |config|
 end
 
 VCR.configure do |config|
+  #Ignoring calls to location API
+  config.ignore_request do |request|
+    URI(request.uri).host == 'maps.googleapis.com'
+  end
+
   config.cassette_library_dir = "./spec/fixtures/vcr_cassettes"
   config.hook_into :webmock # or :fakeweb
 end

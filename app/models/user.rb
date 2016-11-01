@@ -16,4 +16,10 @@ class User < ApplicationRecord
     user.save
     user
   end
+
+  def set_station_subscriptions(station_ids)
+    station_ids.each do |id|
+      stations << Station.find(id)
+    end
+  end
 end

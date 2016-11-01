@@ -1,0 +1,6 @@
+<ul>
+  <% current_user.stations.each do |station| %>
+    <ul><%= station.name %><br>
+      Subscribers: <%= station.num_of_subscribers %></ul>
+  <% end %>
+</ul>
