@@ -6,6 +6,7 @@ class StationsController < ApplicationController
 
   private
     def not_in_viewing_error_message
-      flash.now[:info] = "This station is not located in your viewing area. #{view_context.link_to 'View Stations Near You.', users_new_station_path}"
+      flash.now[:info] = "This station is not located in your viewing area." +
+      "#{view_context.link_to 'View Stations Near You.', users_new_station_path}"
     end
 end
