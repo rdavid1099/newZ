@@ -5,6 +5,7 @@ class Station < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :url, presence: true, uniqueness: true
   validates :logo_path, presence: true
+  validates :call_letters, presence: true, uniqueness: true
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true
@@ -15,6 +16,10 @@ class Station < ApplicationRecord
 
   def full_street_address
     "#{city}, #{state}. #{zipcode}"
+  end
+
+  def num_of_subscribers
+    users.where('role = ?', '0').count
   end
 
   private

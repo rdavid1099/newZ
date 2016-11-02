@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'users/dashboard', to: 'users#show'
   end
 
+  resources :stations, only: [:show]
   resources :community, only: [:index]
 
   get 'users/dashboard', to: 'users#show'
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   namespace :users  do
     get '/stations/subscriptions/new', to: 'stations#new', as: 'new_station'
     post '/stations/subscriptions', to: 'stations#create'
+    delete '/stations/subscriptions', to: 'stations#destroy'
   end
 
   get '/auth/twitter', as: :twitter_login
