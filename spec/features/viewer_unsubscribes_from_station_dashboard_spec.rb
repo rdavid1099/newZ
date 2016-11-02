@@ -11,6 +11,9 @@ describe 'user unsubscribes from station on station dashboard' do
     station = create_station.first
     user.stations << station
 
+    ApplicationController.any_instance.stubs(:logged_in?).returns(true)
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
+
     visit station_path(station.call_letters)
     click_on 'Unsubscribe'
 

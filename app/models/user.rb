@@ -28,6 +28,10 @@ class User < ApplicationRecord
   end
 
   def station_unsubscribe(station_id)
-    stations_users.find_by(station_id: station_id).destroy!
+    stations.delete(station_id)
+  end
+
+  def in_viewing_area?(station_id)
+    !Station.near(location, 60).empty?
   end
 end
