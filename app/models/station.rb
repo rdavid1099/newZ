@@ -5,16 +5,21 @@ class Station < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :url, presence: true, uniqueness: true
   validates :logo_path, presence: true
+  validates :call_letters, presence: true, uniqueness: true
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true
   geocoded_by :full_street_address
 
   before_validation :set_logo
-  after_validation :geocode
+  after_validation :geocode, if: ->(obj){ obj.full_street_address.present? and obj.city_changed? and obj.state_changed? and obj.zipcode_changed? }
 
   def full_street_address
     "#{city}, #{state}. #{zipcode}"
+  end
+
+  def num_of_subscribers
+    users.where('role = ?', '0').count
   end
 
   private

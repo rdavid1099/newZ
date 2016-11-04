@@ -22,6 +22,11 @@ RSpec.configure do |config|
 end
 
 VCR.configure do |config|
+  #Ignoring calls to location API
+  config.ignore_request do |request|
+    URI(request.uri).host == 'maps.googleapis.com'
+  end
+
   config.cassette_library_dir = "./spec/fixtures/vcr_cassettes"
   config.hook_into :webmock # or :fakeweb
 end
@@ -78,6 +83,7 @@ def create_station(params = Hash.new, amount = 1)
       city: (params[:city] || 'Denver'),
       state: (params[:state] || 'CO'),
       zipcode: (params[:zipcode] || '80201'),
+      call_letters: (params[:call_letters] || 'KABC') + n.to_s,
       url: (params[:url] || 'http://www.teststation.com') + n.to_s
     }
     stations << Station.create(info)

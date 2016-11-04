@@ -1,0 +1,16 @@
+<h2><%= @station.name %></h2>
+<% if current_user.subscribed?(@station.id) %>
+  <%= button_to(
+    'Unsubscribe',
+    users_stations_subscriptions_path,
+    method: :delete,
+    params: {station_id: @station.id, redirect: 'true'}
+  )  %>
+<% elsif current_user.in_viewing_area?(@station.id) %>
+  <%= button_to(
+    'Subscribe',
+    users_stations_subscriptions_path,
+    method: :post,
+    params: {@station.id.to_s => '1', 'redirect' => 'true'}
+  )  %>
+<% end %>

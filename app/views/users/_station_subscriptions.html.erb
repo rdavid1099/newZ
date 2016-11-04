@@ -1,0 +1,6 @@
+<ul>
+  <% current_user.stations.each do |station| %>
+    <ul><%= link_to station.name, station_path(station.call_letters) %><br>
+      Subscribers: <%= station.num_of_subscribers %></ul>
+  <% end %>
+</ul>
