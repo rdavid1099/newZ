@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   put 'users/location', to: 'users#update'
 
   namespace :users  do
+    resources :pitches, only: [:new, :create, :show]
     get '/stations/subscriptions/new', to: 'stations#new', as: 'new_station'
     post '/stations/subscriptions', to: 'stations#create'
     delete '/stations/subscriptions', to: 'stations#destroy'
