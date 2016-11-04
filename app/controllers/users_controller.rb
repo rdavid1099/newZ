@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :station_subscriptions?, only: [:show]
 
   def show
+    @trending_stories = NytStories.get_top_stories
   end
 
   private

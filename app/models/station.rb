@@ -12,7 +12,7 @@ class Station < ApplicationRecord
   geocoded_by :full_street_address
 
   before_validation :set_logo
-  after_validation :geocode
+  after_validation :geocode, if: ->(obj){ obj.full_street_address.present? and obj.city_changed? and obj.state_changed? and obj.zipcode_changed? }
 
   def full_street_address
     "#{city}, #{state}. #{zipcode}"
