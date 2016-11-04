@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'user can log in using Twitter' do
   context 'producer logs in' do
     it 'clicks Login Using Twitter and is taken to their dashboard page' do
-      VCR.use_cassette('feature_user_sees_cnn_headlines') do
+      VCR.use_cassette('feature_user_sees_headlines') do
         user = create_user(
           name: 'Tester',
           screen_name: 'Tester Screen Name',
@@ -25,7 +25,7 @@ RSpec.feature 'user can log in using Twitter' do
 
   context 'viewer logs in' do
     it 'clicks Login Using Twitter and is taken to their dashboard page' do
-      VCR.use_cassette('feature_user_sees_cnn_headlines') do
+      VCR.use_cassette('feature_user_sees_headlines') do
         user = create_user(
           name: 'Tester',
           screen_name: 'Tester Screen Name',
@@ -46,7 +46,7 @@ RSpec.feature 'user can log in using Twitter' do
 
   context 'admin logs in' do
     it 'clicks Login Using Twitter and is taken to their dashboard page' do
-      VCR.use_cassette('feature_user_sees_cnn_headlines') do
+      VCR.use_cassette('feature_user_sees_headlines') do
         user = create_user(
           name: 'Tester',
           screen_name: 'Tester Screen Name',

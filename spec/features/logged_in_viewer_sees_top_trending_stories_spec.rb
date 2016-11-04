@@ -9,13 +9,12 @@ describe 'viewer sees trending stories on dashboard' do
       ApplicationController.any_instance.stubs(:current_user).returns(user)
 
       visit users_dashboard_path
-
       within('.trending-stories') do
-        expect(page).to have_content('1. CNN Story 1')
-        expect(page).to have_content('2. CNN Story 1')
-        expect(page).to have_content('3. CNN Story 1')
-        expect(page).to have_content('4. CNN Story 1')
-        expect(page).to have_content('5. CNN Story 1')
+        expect(page).to have_link('Iowa Police Arrest Suspect in ‘Ambush’ Killings of 2 Officers')
+        expect(page).to have_link('Why Sexual Harassment Persists in Politics')
+        expect(page).to have_link('Veterans, Feeling Abandoned, Stand by Donald Trump')
+        expect(page).to have_link('California Today: An Invasive Beetle Threatens State’s Southern Palm Trees')
+        expect(page).to have_link('Obama Faults F.B.I. on Emails, Citing')
       end
     end
   end

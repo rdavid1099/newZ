@@ -1,3 +1,30 @@
 <h1>Welcome, <%= current_user.screen_name %></h1>
-<h3>Today's Top Trending Stories</h3>
+<table class='trending-stories'>
+  <h3>Today's Top Trending Stories</h3>
+  <tr>
+    <th>
+      Rank
+    </th>
+    <th>
+      Headline
+    </th>
+    <th>
+      Published Date
+    </th>
+  </tr>
+  <% @trending_stories.stories(5).each_with_index do |story, i| %>
+  <tr>
+    <td>
+      <%= i + 1 %>.
+    </td>
+    <td>
+      <%= link_to story.title, story.url %>
+    </td>
+    <td>
+      <%= story.published_date %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+</div>
 <h3>Your Recent Story Pitches</h3>
