@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'viewer can pitch story' do
-  it 'clicks pitch link from dashboard' do
+  xit 'clicks pitch link from dashboard' do
     VCR.use_cassette('feature_user_sees_headlines') do
       user = create_user.first
 
@@ -9,7 +9,7 @@ describe 'viewer can pitch story' do
       ApplicationController.any_instance.stubs(:current_user).returns(user)
 
       visit users_dashboard_path
-save_and_open_page
+
       within('.trending-stories') do
         first('.story').click_link('Pitch Story')
       end
