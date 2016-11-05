@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'viewer can pitch story' do
+  before(:each) do
+    create_top_stories
+  end
+
   xit 'clicks pitch link from dashboard' do
     VCR.use_cassette('feature_user_sees_headlines') do
       user = create_user.first

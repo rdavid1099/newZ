@@ -90,3 +90,17 @@ def create_station(params = Hash.new, amount = 1)
   end
   stations
 end
+
+def create_top_stories
+  VCR.use_cassette('service_top_stories_test') do
+    service = NytService.new
+    NytCollection.upload_top_stories(service.top_stories)
+  end
+end
+
+def destroy_top_stories
+  unless NytCollection.all.empty?
+    NytCollection.all.each { |collection| collection.stories.delete_all }
+    NytCollection.delete_all
+  end
+end

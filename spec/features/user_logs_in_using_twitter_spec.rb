@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature 'user can log in using Twitter' do
+  before(:each) do
+    create_top_stories
+  end
+
   context 'producer logs in' do
     it 'clicks Login Using Twitter and is taken to their dashboard page' do
       VCR.use_cassette('feature_user_sees_headlines') do

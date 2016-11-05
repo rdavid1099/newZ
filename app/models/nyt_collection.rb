@@ -11,4 +11,8 @@ class NytCollection < ApplicationRecord
       collection.stories << Story.create_from_api_data(result_data)
     end
   end
+
+  def top_five_stories
+    stories.first(5)
+  end
 end

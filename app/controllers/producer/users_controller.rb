@@ -1,5 +1,5 @@
 class Producer::UsersController < ApplicationController
   def show
-    @trending_stories = NytStories.get_top_stories
+    @story_collection = NytCollection.last
   end
 end
