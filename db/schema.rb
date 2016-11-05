@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101013445) do
+ActiveRecord::Schema.define(version: 20161105195217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "nyt_collections", force: :cascade do |t|
+    t.string   "copyright"
+    t.integer  "num_results"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "stations", force: :cascade do |t|
     t.string   "name"
@@ -36,6 +43,20 @@ ActiveRecord::Schema.define(version: 20161101013445) do
     t.index ["user_id", "station_id"], name: "index_stations_users_on_user_id_and_station_id", using: :btree
   end
 
+  create_table "stories", force: :cascade do |t|
+    t.string   "title"
+    t.string   "abstract"
+    t.string   "url"
+    t.string   "authors"
+    t.string   "raw_published_date"
+    t.string   "thumbnail_url"
+    t.string   "image_url"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "nyt_collection_id"
+    t.index ["nyt_collection_id"], name: "index_stories_on_nyt_collection_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "screen_name"
@@ -50,4 +71,5 @@ ActiveRecord::Schema.define(version: 20161101013445) do
     t.integer  "role"
   end
 
+  add_foreign_key "stories", "nyt_collections"
 end

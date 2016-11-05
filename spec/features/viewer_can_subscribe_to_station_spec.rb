@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'viewer subscribes to a station' do
+  before(:each) do
+    create_top_stories
+  end
+
   it 'sees the subscribed station on their dashboard' do
     VCR.use_cassette('feature_user_sees_headlines') do
       user = create_user(

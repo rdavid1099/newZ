@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'viewer sees trending stories on dashboard' do
+  before(:each) do
+    create_top_stories
+  end
+
   it 'sees list of five headlines' do
     VCR.use_cassette('feature_user_sees_headlines') do
       user = create_user.first
