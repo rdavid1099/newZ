@@ -1,15 +1,16 @@
 class PitchesController < ApplicationController
+  before_action :set_story, only: [:new, :create]
+
   def new
     @pitch = Pitch.new
-    @story = Story.find(params[:story_id])
   end
 
   def create
-    pitch = current_user.pitches.new(pitch_params)
-    if pitch.save
-      redirect_to story_pitch_path(params[:story_id], pitch.id)
+    @pitch = current_user.pitches.new(pitch_params)
+    if @pitch.save
+      redirect_to story_pitch_path(params[:story_id], @pitch.id)
     else
-      #flash error
+      flash.now[:error] = @pitch.errors.full_messages
       render :new
     end
   end
@@ -26,5 +27,9 @@ class PitchesController < ApplicationController
        abstract:  story.abstract,
        body:      params[:pitch][:body],
        story_id:  story.id}
+    end
+
+    def set_story
+      @story = Story.find(params[:story_id])
     end
 end
