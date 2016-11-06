@@ -14,7 +14,7 @@
           Published <%= story.elapsed_time_since_published %> hours ago
         </td>
         <td>
-          <%= link_to 'Pitch Story', new_users_pitch_path %>
+          <%= link_to 'Pitch Story', new_story_pitch_path(story.id) %>
         </td>
       </tr>
     </table>

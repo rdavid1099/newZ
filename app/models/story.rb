@@ -1,5 +1,6 @@
 class Story < ApplicationRecord
   belongs_to :nyt_collection
+  has_many :pitches
 
   validates :title, presence: true
   validates :abstract, presence: true

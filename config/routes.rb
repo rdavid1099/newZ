@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     get 'users/dashboard', to: 'users#show'
   end
 
+  resources :stories, only: [:index] do
+    resources :pitches, only: [:new, :create, :show]
+  end
+
   resources :stations, only: [:show]
   resources :community, only: [:index]
 
@@ -17,7 +21,6 @@ Rails.application.routes.draw do
   put 'users/location', to: 'users#update'
 
   namespace :users  do
-    resources :pitches, only: [:new, :create, :show]
     get '/stations/subscriptions/new', to: 'stations#new', as: 'new_station'
     post '/stations/subscriptions', to: 'stations#create'
     delete '/stations/subscriptions', to: 'stations#destroy'

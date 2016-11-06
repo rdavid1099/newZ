@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161105195217) do
+ActiveRecord::Schema.define(version: 20161105205357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 20161105195217) do
     t.integer  "num_results"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "pitches", force: :cascade do |t|
+    t.string   "headline"
+    t.string   "story_url"
+    t.string   "abstract"
+    t.string   "body"
+    t.integer  "ups"
+    t.integer  "downs"
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_pitches_on_story_id", using: :btree
+    t.index ["user_id"], name: "index_pitches_on_user_id", using: :btree
   end
 
   create_table "stations", force: :cascade do |t|
@@ -71,5 +86,7 @@ ActiveRecord::Schema.define(version: 20161105195217) do
     t.integer  "role"
   end
 
+  add_foreign_key "pitches", "stories"
+  add_foreign_key "pitches", "users"
   add_foreign_key "stories", "nyt_collections"
 end
