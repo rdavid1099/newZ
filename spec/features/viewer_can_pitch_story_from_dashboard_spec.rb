@@ -25,7 +25,7 @@ describe 'viewer can pitch story' do
       expect(page).to have_css('.headline')
       expect(page).to have_css('.story_url')
       expect(page).to have_css('.abstract')
-      expect(page).to have_css('.user_comment')
+      expect(page).to have_css('.body')
       expect(page).to have_css('.ups')
       expect(page).to have_css('.downs')
       expect(page).to have_css('.comments')
