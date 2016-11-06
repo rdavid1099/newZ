@@ -1,6 +1,10 @@
 require 'rails_helper'
 
-RSpec.feature 'unsubscribed user logs in' do
+describe 'unsubscribed user logs in' do
+  before(:each) do
+    create_top_stories
+  end
+
   it 'is prompted to subscribe to stations on dashboard page' do
     VCR.use_cassette('feature_user_sees_headlines') do
       user = create_user(
