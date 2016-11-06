@@ -3,8 +3,10 @@
 <p class='abstract body'>
   <strong>Summary:</strong><br>
   <%= @pitch.abstract %><br><br>
-  <strong><%= @pitch.user.screen_name %>'s Pitch:</strong><br>
-  <%= @pitch.body %>
+  <% if @pitch.body %>
+    <strong><%= @pitch.user.screen_name %>'s Pitch:</strong><br>
+    <%= @pitch.body %>
+  <% end %>
 </p>
 <p class='votes'>
   <div class='ups'>
@@ -15,5 +17,7 @@
   </div>
 </p>
 <div class='comments'>
-
+  <h4>Comments</h4>
+  <%= render partial: 'comment_form' %>
+  <%= render partial: 'comments' %>
 </div>

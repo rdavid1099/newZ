@@ -17,6 +17,7 @@ class PitchesController < ApplicationController
 
   def show
     @pitch = Pitch.find(params[:id])
+    @comment = Comment.new
   end
 
   private
@@ -26,7 +27,9 @@ class PitchesController < ApplicationController
        story_url: story.url,
        abstract:  story.abstract,
        body:      params[:pitch][:body],
-       story_id:  story.id}
+       story_id:  story.id,
+       ups:       1,
+       downs:     0}
     end
 
     def set_story

@@ -1,0 +1,7 @@
+<% @pitch.comments.each do |comment| %>
+<p>
+  <strong><%= comment.user.screen_name %></strong><br>
+  &nbsp;&nbsp;<%= comment.body %><br>
+  <%= comment.ups %> Likes | <%= comment.downs %> Dislikes | Reply
+</p>
+<% end %>

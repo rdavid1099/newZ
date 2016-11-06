@@ -91,6 +91,39 @@ def create_station(params = Hash.new, amount = 1)
   stations
 end
 
+def create_pitch(user, params = Hash.new, amount = 1)
+  amount.times do |n|
+    info = {
+      headline: (params[:headline] || 'Test Story') + n.to_s,
+      story_url: (params[:story_url] || 'story.com/testing'),
+      abstract: (params[:abstract] || 'story testing is really fun'),
+      body: (params[:body] || 'testing pitches'),
+      story_id: create_story.id,
+      ups: (params[:ups] || 1),
+      downs: (params[:downs] || 0)
+    }
+    user.pitches << Pitch.create(info)
+  end
+end
+
+def create_story
+  a = Story.create(
+    title: 'Test Story',
+    abstract: 'story testing is really fun',
+    url: 'story.com/testing',
+    authors: 'Steve and Greg',
+    raw_published_date: '2016-11-02T06:13:05-04:00',
+    nyt_collection_id: create_nyt_collection.id
+  )
+end
+
+def create_nyt_collection
+  NytCollection.create(
+    copyright: '2016',
+    num_results: 1
+  )
+end
+
 def create_top_stories
   VCR.use_cassette('service_top_stories_test') do
     service = NytService.new

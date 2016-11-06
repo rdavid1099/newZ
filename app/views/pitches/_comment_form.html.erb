@@ -1,0 +1,5 @@
+<%= form_for @comment do |f| %>
+  <%= f.text_area :body, placeholder: 'Comment on this Story' %><br>
+  <%= f.hidden_field :pitch_id, {value: @pitch.id} %>
+  <%= f.submit 'Submit' %>
+<% end %>
