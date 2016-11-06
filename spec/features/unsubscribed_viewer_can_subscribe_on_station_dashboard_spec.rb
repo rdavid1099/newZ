@@ -1,8 +1,13 @@
 require 'rails_helper'
 
 describe 'viewer subscribes to station on dashboard' do
+  before(:each) do
+    create_top_stories
+  end
+
   context 'viewer lives in broadcast area of station' do
     it 'clicks subscribe and is returned to station dashboard' do
+      create_top_stories
       user = create_user(
         name: 'Tester',
         screen_name: 'Tester Screen Name',

@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     get 'users/dashboard', to: 'users#show'
   end
 
+  resources :stories, only: [:index] do
+    resources :pitches, only: [:new, :create, :show]
+  end
+
   resources :stations, only: [:show]
   resources :community, only: [:index]
 

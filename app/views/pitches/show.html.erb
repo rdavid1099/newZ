@@ -1,0 +1,19 @@
+<h1 class='headline'><%= @pitch.headline %></h1>
+<h4 class='story_url'><%= link_to 'New York Times Article', @pitch.story_url %></h4>
+<p class='abstract body'>
+  <strong>Summary:</strong><br>
+  <%= @pitch.abstract %><br><br>
+  <strong><%= @pitch.user.screen_name %>'s Pitch:</strong><br>
+  <%= @pitch.body %>
+</p>
+<p class='votes'>
+  <div class='ups'>
+    <%= @pitch.ups %> Thumbs Up
+  </div>
+  <div class='downs'>
+    <%= @pitch.downs %> Thumbs Down
+  </div>
+</p>
+<div class='comments'>
+
+</div>
