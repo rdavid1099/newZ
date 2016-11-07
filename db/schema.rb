@@ -19,12 +19,13 @@ ActiveRecord::Schema.define(version: 20161106174542) do
     t.string   "body"
     t.integer  "ups"
     t.integer  "downs"
-    t.integer  "parent_id"
-    t.integer  "child_id"
     t.integer  "pitch_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
     t.index ["pitch_id"], name: "index_comments_on_pitch_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end

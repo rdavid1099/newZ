@@ -4,10 +4,9 @@ class CreateComments < ActiveRecord::Migration[5.0]
       t.string :body
       t.integer :ups
       t.integer :downs
-      t.integer :parent_id
-      t.integer :child_id
       t.references :pitch, foreign_key: true
       t.references :user, foreign_key: true
+      t.references :commentable, polymorphic: true, index: true
 
       t.timestamps
     end
