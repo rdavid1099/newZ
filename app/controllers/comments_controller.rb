@@ -1,17 +1,16 @@
 class CommentsController < ApplicationController
   def create
     pitch = Pitch.find(params[:comment][:pitch_id])
-    new_comment = current_user.comments.create(comment_params)
-    byebug
-    flash[:error] = 'You must enter a comment.'
+    comment = pitch.comments.new(comment_params)
+    unless comment.save
+      flash[:error] = 'You must enter a comment.'
+    end
     redirect_to story_pitch_path(pitch.story.id, pitch.id)
   end
 
   private
     def comment_params
       {body: params[:comment][:body],
-       ups:  1,
-       downs: 0,
-       pitch_id: params[:comment][:pitch_id]}
+      user_id: current_user.id}
     end
 end

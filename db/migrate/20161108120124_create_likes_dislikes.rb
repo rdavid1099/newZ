@@ -4,8 +4,8 @@ class CreateLikesDislikes < ActiveRecord::Migration[5.0]
       t.boolean :ups
       t.boolean :downs
       t.references :user, foreign_key: true
-      t.integer :pitch_id
-      t.integer :message_id
+      t.references :pitch, foreign_key: true
+      t.references :comment, foreign_key: true
 
       t.timestamps
     end

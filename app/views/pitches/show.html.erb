@@ -10,10 +10,10 @@
 </p>
 <p class='votes'>
   <div class='ups'>
-    <%= @pitch.ups %> Thumbs Up
+    <%= pluralize @pitch.ups, 'Like' %>
   </div>
   <div class='downs'>
-    <%= @pitch.downs %> Thumbs Down
+    <%= pluralize @pitch.downs, 'Dislike' %>
   </div>
 </p>
 <div class='comments'>

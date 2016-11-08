@@ -19,7 +19,7 @@ describe 'viewer clicks on pitch comments' do
 
     within('.comments') do
       expect(page).to have_content('This is a test comment')
-      expect(page).to have_content('1 Like')
+      expect(page).to have_content('0 Likes')
       expect(page).to have_content('0 Dislikes')
       expect(page).to have_content('Reply')
     end
