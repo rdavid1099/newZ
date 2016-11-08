@@ -10,24 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106174542) do
+ActiveRecord::Schema.define(version: 20161108120124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
-    t.integer  "ups"
-    t.integer  "downs"
-    t.integer  "pitch_id"
-    t.integer  "user_id"
     t.string   "commentable_type"
     t.integer  "commentable_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
-    t.index ["pitch_id"], name: "index_comments_on_pitch_id", using: :btree
-    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
+  create_table "likes_dislikes", force: :cascade do |t|
+    t.boolean  "ups"
+    t.boolean  "downs"
+    t.integer  "user_id"
+    t.integer  "pitch_id"
+    t.integer  "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_likes_dislikes_on_user_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
   create_table "nyt_collections", force: :cascade do |t|
@@ -101,8 +113,8 @@ ActiveRecord::Schema.define(version: 20161106174542) do
     t.integer  "role"
   end
 
-  add_foreign_key "comments", "pitches"
-  add_foreign_key "comments", "users"
+  add_foreign_key "likes_dislikes", "users"
+  add_foreign_key "messages", "users"
   add_foreign_key "pitches", "stories"
   add_foreign_key "pitches", "users"
   add_foreign_key "stories", "nyt_collections"
