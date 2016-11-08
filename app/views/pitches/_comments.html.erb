@@ -2,6 +2,8 @@
 <p>
   <strong><%= comment.user.screen_name %></strong><br>
   &nbsp;&nbsp;<%= comment.body %><br>
-  <%= pluralize comment.ups, 'Like' %> | <%= pluralize comment.downs, 'Dislike' %> | Reply
+  <%= pluralize comment.ups, 'Like' %> |
+  <%= pluralize comment.downs, 'Dislike' %> |
+  <%= link_to 'Reply',  %>Reply
 </p>
 <% end %>

@@ -107,13 +107,20 @@ def create_pitch(user, params = Hash.new, amount = 1)
 end
 
 def create_story
-  a = Story.create(
+  Story.create(
     title: 'Test Story',
     abstract: 'story testing is really fun',
     url: 'story.com/testing',
     authors: 'Steve and Greg',
     raw_published_date: '2016-11-02T06:13:05-04:00',
     nyt_collection_id: create_nyt_collection.id
+  )
+end
+
+def create_comment(params)
+  params[:pitch].comments.create(
+    body: "This is a test comment #{Comment.count}",
+    user_id: params[:user].id
   )
 end
 
