@@ -1,6 +1,5 @@
 class Comment < ApplicationRecord
   belongs_to :user
-  has_many :likes_dislikes
 
   validates :body, presence: true
 
@@ -28,6 +27,10 @@ class Comment < ApplicationRecord
 
   def parent
     Comment.find(comment_parent.parent_id)
+  end
+
+  def likes_dislikes
+    LikesDislike.where('comment_id = ?', id)
   end
 
   private
