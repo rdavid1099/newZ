@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :pitches, only: [:new, :create, :show]
   end
 
+  resources :pitches, only: [:index]
   resources :likes_dislikes, only: [:create]
   resources :stations, only: [:show]
   resources :community, only: [:index]

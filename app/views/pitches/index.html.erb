@@ -1,0 +1,23 @@
+<table class='recent-pitches'>
+  <h3>Most Recent Pitches</h3>
+  <% @pitches.each do |pitch| %>
+    <tr>
+      <td>
+        <%= link_to pitch.headline, story_pitch_path(pitch.story.id, pitch.id) %>
+      </td>
+    </tr>
+    <table>
+      <tr>
+        <td>
+          Pitched by <%= pitch.user.screen_name %>
+        </td>
+        <td>
+          <%= pluralize pitch.ups, 'Like' %>
+        </td>
+        <td>
+          <%= pluralize pitch.downs, 'Dislike' %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</table>
