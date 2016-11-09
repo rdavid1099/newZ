@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'viewer replies to comment' do
   it 'clicks reply and fills form to submit comment' do
     user = create_user.first
-    pitch = create_pitch(user)
-    create_comment({pitch: pitch, user: user})
+    create_pitch(user)
+    create_comment({pitch: Pitch.last, user: user})
 
     ApplicationController.any_instance.stubs(:logged_in?).returns(true)
     ApplicationController.any_instance.stubs(:current_user).returns(user)

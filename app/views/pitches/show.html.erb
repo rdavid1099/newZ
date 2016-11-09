@@ -19,5 +19,9 @@
 <div class='comments'>
   <h4>Comments</h4>
   <%= render partial: 'comment_form' %>
-  <%= render partial: 'comments' %>
+  <% @pitch.comments.each do |comment| %>
+  <p>
+    <%= render partial: 'comments', locals: {comment: comment} %>    
+  </p>
+  <% end %>
 </div>

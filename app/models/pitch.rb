@@ -1,7 +1,6 @@
 class Pitch < ApplicationRecord
   belongs_to :user
   belongs_to :story
-  has_many :comments
   has_many :likes_dislikes
 
   validates :headline , presence: true
@@ -14,5 +13,9 @@ class Pitch < ApplicationRecord
 
   def downs
     likes_dislikes.where('downs = ?', true).count
+  end
+
+  def comments
+    Comment.where('pitch_id = ?', id)
   end
 end
