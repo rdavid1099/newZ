@@ -1,0 +1,22 @@
+<p class="comment">
+  <strong><%= comment.user.screen_name %></strong><br>
+  &nbsp;&nbsp;<%= comment.body %><br>
+  <%= pluralize comment.ups, 'Like' %> |
+  <%= pluralize comment.downs, 'Dislike' %> |
+  <div class="reply">
+    <%= link_to 'Reply', '#reply', onclick: 'return false;' %>
+  </div>
+  <div class='body' hidden>
+    <%= form_for @comment do |f| %>
+      <%= f.text_area :body, placeholder: 'Reply' %><br>
+      <%= f.hidden_field :reply_id, {value: comment.id} %>
+      <%= f.hidden_field :pitch_id, {value: @pitch.id} %>
+      <%= f.submit 'Reply' %>
+    <% end %>
+  </div>
+</p>
+<% comment.replies.each do |comment| %>
+<blockquote>
+  <%= render partial: 'comments', locals: {comment: comment} %>  
+</blockquote>
+<% end %>

@@ -3,17 +3,25 @@
 <p class='abstract body'>
   <strong>Summary:</strong><br>
   <%= @pitch.abstract %><br><br>
-  <strong><%= @pitch.user.screen_name %>'s Pitch:</strong><br>
-  <%= @pitch.body %>
+  <% if @pitch.body %>
+    <strong><%= @pitch.user.screen_name %>'s Pitch:</strong><br>
+    <%= @pitch.body %>
+  <% end %>
 </p>
 <p class='votes'>
   <div class='ups'>
-    <%= @pitch.ups %> Thumbs Up
+    <%= pluralize @pitch.ups, 'Like' %>
   </div>
   <div class='downs'>
-    <%= @pitch.downs %> Thumbs Down
+    <%= pluralize @pitch.downs, 'Dislike' %>
   </div>
 </p>
 <div class='comments'>
-
+  <h4>Comments</h4>
+  <%= render partial: 'comment_form' %>
+  <% @pitch.comments.each do |comment| %>
+  <p>
+    <%= render partial: 'comments', locals: {comment: comment} %>    
+  </p>
+  <% end %>
 </div>

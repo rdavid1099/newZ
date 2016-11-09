@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :stations, only: [:show]
   resources :community, only: [:index]
+  resources :comments, only: [:create]
 
   get 'users/dashboard', to: 'users#show'
   get 'users/location/edit', to: 'users#edit'
