@@ -1,6 +1,10 @@
 class PitchesController < ApplicationController
   before_action :set_story, only: [:new, :create]
 
+  def index
+    @pitches = Pitch.order(created_at: :desc).first(25)
+  end
+
   def new
     @pitch = Pitch.new
   end

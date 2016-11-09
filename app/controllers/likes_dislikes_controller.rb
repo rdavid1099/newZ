@@ -1,7 +1,8 @@
 class LikesDislikesController < ApplicationController
   def create
+    byebug
     LikesDislike.create(likes_dislikes_params)
-    redirect_to(:back)
+    redirect_back(fallback_location: pitches_path)
   end
 
   private
