@@ -14,7 +14,8 @@ class CommentsController < ApplicationController
   private
     def comment_params
       {body: params[:comment][:body],
-      user_id: current_user.id}
+      user_id: current_user.id,
+      pitch_id: params[:comment][:pitch_id]}
     end
 
     def reply_params
