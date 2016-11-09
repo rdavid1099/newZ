@@ -16,5 +16,7 @@
   </div>
 </p>
 <% comment.replies.each do |comment| %>
-  <%= render partial: 'comments', locals: {comment: comment} %>
+<blockquote>
+  <%= render partial: 'comments', locals: {comment: comment} %>  
+</blockquote>
 <% end %>
