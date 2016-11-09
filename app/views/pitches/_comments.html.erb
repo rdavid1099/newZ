@@ -1,8 +1,8 @@
 <p class="comment">
   <strong><%= comment.user.screen_name %></strong><br>
   &nbsp;&nbsp;<%= comment.body %><br>
-  <%= pluralize comment.ups, 'Like' %> |
-  <%= pluralize comment.downs, 'Dislike' %> |
+  <%= link_to((pluralize comment.ups, 'Like'), likes_dislikes_path(comment_id: comment.id, like: true), method: :post) %> |
+  <%= link_to((pluralize comment.downs, 'Dislike'), likes_dislikes_path(comment_id: comment.id, dislike: true), method: :post) %>
   <div class="reply">
     <%= link_to 'Reply', '#reply', onclick: 'return false;' %>
   </div>
@@ -17,6 +17,6 @@
 </p>
 <% comment.replies.each do |comment| %>
 <blockquote>
-  <%= render partial: 'comments', locals: {comment: comment} %>  
+  <%= render partial: 'comments', locals: {comment: comment} %>
 </blockquote>
 <% end %>

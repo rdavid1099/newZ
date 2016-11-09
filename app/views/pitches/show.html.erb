@@ -10,18 +10,18 @@
 </p>
 <p class='votes'>
   <div class='ups'>
-    <%= pluralize @pitch.ups, 'Like' %>
+    <%= link_to((pluralize @pitch.ups, 'Like'), likes_dislikes_path(pitch_id: @pitch.id, like: true), method: :post) %>
   </div>
   <div class='downs'>
-    <%= pluralize @pitch.downs, 'Dislike' %>
+    <%= link_to((pluralize @pitch.downs, 'Dislike'), likes_dislikes_path(pitch_id: @pitch.id, dislike: true), method: :post) %>
   </div>
 </p>
 <div class='comments'>
   <h4>Comments</h4>
   <%= render partial: 'comment_form' %>
   <% @pitch.comments.each do |comment| %>
-  <p>
-    <%= render partial: 'comments', locals: {comment: comment} %>    
-  </p>
+  <blockquote>
+    <%= render partial: 'comments', locals: {comment: comment} %>
+  </blockquote>
   <% end %>
 </div>
