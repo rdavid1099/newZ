@@ -11,11 +11,13 @@
     <div class="h-divider">
     </div>
     <p>
-      <h3>Your Station Subscriptions</h3>
-      <% unless current_user.stations.empty? %>
-        <%= render partial: 'station_subscriptions' %>
-      <% end %>
-      <%= link_to 'Subscribe to Stations', users_new_station_path %>
+      <div class="subscribed">
+        <h3>Your Station Subscriptions</h3>
+        <% unless current_user.stations.empty? %>
+          <%= render partial: 'station_subscriptions' %>
+        <% end %>
+        <%= link_to 'Subscribe to Stations', users_new_station_path %>        
+      </div>
     </p>
   </div>
   <div class="col-md-4 profile-container">
