@@ -4,8 +4,9 @@
     <p>
       <img src="<%= current_user.profile_image %>"><br>
       <%= current_user.name %><br>
+      <%= current_user.screen_name %><br>
       <%= current_user.location %><br>
-      <%= link_to 'Edit Profile', users_location_edit_path %>
+      <%= link_to 'Edit Profile', users_edit_path %>
     </p>
     <div class="h-divider">
     </div>

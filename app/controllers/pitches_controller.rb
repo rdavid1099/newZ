@@ -14,7 +14,7 @@ class PitchesController < ApplicationController
     if @pitch.save
       redirect_to story_pitch_path(params[:story_id], @pitch.id)
     else
-      flash.now[:error] = @pitch.errors.full_messages
+      flash.now[:danger] = @pitch.errors.full_messages
       render :new
     end
   end
