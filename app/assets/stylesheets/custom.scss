@@ -27,12 +27,20 @@ blockquote {
   background-color: $accent-color2;
 }
 
+.h-divider{
+ margin-top:5px;
+ margin-bottom:5px;
+ height:1px;
+ width:100%;
+ border-top:1px solid gray;
+}
+
 .lg-container {
   background-color: $primary-color;
   border-radius: 10px;
   padding: 10px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .container {
@@ -49,9 +57,9 @@ blockquote {
 
 .profile-container {
   background-color: $accent-color2;
-  border-radius: 10px;
+  border-radius: 20px;
   border-style: solid;
-  border-width: thick;
+  border-width: thin;
   padding: 10px;
 }
 
