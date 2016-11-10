@@ -39,7 +39,7 @@ class User < ApplicationRecord
   end
 
   def mark_like_dislike(params)
-    unless previously_marked?(params[:pitch_id], params[:comment_id])
+    if relevant_likes_dislike(params[:pitch_id], params[:comment_id]).nil?
       likes_dislikes.create(params)
     else
       update_like_dislike(params)
@@ -47,16 +47,13 @@ class User < ApplicationRecord
   end
 
   private
-    def previously_marked?(pitch_id, comment_id)
-      !likes_dislikes.where('pitch_id = ? OR comment_id = ?',
+    def relevant_likes_dislike(pitch_id, comment_id)
+      likes_dislikes.where('pitch_id = ? OR comment_id = ?',
                             pitch_id,
-                            comment_id).empty?
+                            comment_id).first
     end
 
     def update_like_dislike(params)
-      likes_dislike = likes_dislikes.where('pitch_id = ? OR comment_id = ?',
-                            params[:pitch_id],
-                            params[:comment_id]).first
-      likes_dislike.update(params)
+      relevant_likes_dislike(params[:pitch_id], params[:comment_id]).update(params)
     end
 end
