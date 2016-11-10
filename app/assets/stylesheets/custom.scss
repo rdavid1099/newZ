@@ -1,0 +1,47 @@
+$primary-color: #457B9D;
+$secondary-color: #1D3557;
+$accent-color2: #F1FAEE;
+$accent-color3: #000500;
+
+body {
+  background-image: image-url('cork-wallet.png');
+  background-repeat:repeat;
+}
+
+h1.header-text {
+  font-style: italic;
+  text-align: center;
+}
+
+blockquote {
+  border-left: 10px solid;
+  border-color: $accent-color3;
+}
+
+.btn-default {
+  background-color: $accent-color2;
+}
+
+.container {
+  background-color: $primary-color;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.base-container {
+  background-color: $accent-color2;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.profile-container {
+  background-color: $accent-color2;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: thick;
+  padding: 10px;
+}
+
+.btn-primary {
+  background-color: $secondary-color;
+}

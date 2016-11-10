@@ -1,9 +1,3 @@
-<%= render partial: 'shared/base_dashboard' %>
-<div class="subscribed">
-  <h2>Your Station Subscriptions</h2>
-  <% unless current_user.stations.empty? %>
-    <%= render partial: 'station_subscriptions' %>
-  <% else %>
-    <%= link_to 'Subscribe to Stations', users_new_station_path %>
-  <% end %>
+<div class="well">
+  <%= render partial: 'shared/base_dashboard' %>
 </div>
