@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :likes_dislikes
   enum role: [:viewer, :producer, :admin]
 
+  validates :screen_name, presence: true
+  validates :name, presence: true
+
   def self.from_omniauth(auth_info, role = nil)
     user = User.find_or_create_by(uid: auth_info.uid)
     user.name = auth_info.extra.raw_info.name

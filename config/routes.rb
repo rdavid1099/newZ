@@ -19,9 +19,10 @@ Rails.application.routes.draw do
   resources :community, only: [:index]
   resources :comments, only: [:create]
 
+  get 'users/edit', to: 'users#edit'
+  put 'user', to: 'users#update'
+  patch 'user', to: 'users#update'
   get 'users/dashboard', to: 'users#show'
-  get 'users/location/edit', to: 'users#edit'
-  put 'users/location', to: 'users#update'
 
   namespace :users  do
     get '/stations/subscriptions/new', to: 'stations#new', as: 'new_station'

@@ -1,27 +1,29 @@
-<h1 class='headline'><%= @pitch.headline %></h1>
-<h4 class='story_url'><%= link_to 'New York Times Article', @pitch.story_url %></h4>
-<p class='abstract body'>
-  <strong>Summary:</strong><br>
-  <%= @pitch.abstract %><br><br>
-  <% if @pitch.body %>
-    <strong><%= @pitch.user.screen_name %>'s Pitch:</strong><br>
-    <%= @pitch.body %>
-  <% end %>
-</p>
-<p class='votes'>
-  <div class='ups'>
-    <%= link_to((pluralize @pitch.ups, 'Like'), likes_dislikes_path(pitch_id: @pitch.id, like: true), method: :post) %>
+<div class="container">
+  <div class="well">
+    <h2 class='headline'><%= @pitch.headline %></h2>
+    <h4 class='story_url'><%= link_to 'New York Times Article', @pitch.story_url %></h4>
+    <p class='abstract body'>
+      <strong>Summary:</strong><br>
+      <%= @pitch.abstract %><br><br>
+      <% if @pitch.body %>
+        <strong><%= @pitch.user.screen_name %>'s Pitch:</strong><br>
+        <%= @pitch.body %>
+      <% end %>
+    </p>
+    <p class='votes'>
+      <div class='ups downs'>
+        <%= link_to((pluralize @pitch.ups, 'Like'), likes_dislikes_path(pitch_id: @pitch.id, like: true), method: :post) %> | 
+        <%= link_to((pluralize @pitch.downs, 'Dislike'), likes_dislikes_path(pitch_id: @pitch.id, dislike: true), method: :post) %>
+      </div>
+    </p>
+    <div class='comments'>
+      <h4>Comments</h4>
+      <%= render partial: 'comment_form' %>
+      <% @pitch.comments.each do |comment| %>
+      <blockquote>
+        <%= render partial: 'comments', locals: {comment: comment} %>
+      </blockquote>
+      <% end %>
+    </div>
   </div>
-  <div class='downs'>
-    <%= link_to((pluralize @pitch.downs, 'Dislike'), likes_dislikes_path(pitch_id: @pitch.id, dislike: true), method: :post) %>
-  </div>
-</p>
-<div class='comments'>
-  <h4>Comments</h4>
-  <%= render partial: 'comment_form' %>
-  <% @pitch.comments.each do |comment| %>
-  <blockquote>
-    <%= render partial: 'comments', locals: {comment: comment} %>
-  </blockquote>
-  <% end %>
 </div>

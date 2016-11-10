@@ -1,5 +1,5 @@
 <p class="comment">
-  <strong><%= comment.user.screen_name %></strong><br>
+  <strong><img src='<%= comment.user.profile_image %>'> <%= comment.user.screen_name %></strong><br>
   &nbsp;&nbsp;<%= comment.body %><br>
   <%= link_to((pluralize comment.ups, 'Like'), likes_dislikes_path(comment_id: comment.id, like: true), method: :post) %> |
   <%= link_to((pluralize comment.downs, 'Dislike'), likes_dislikes_path(comment_id: comment.id, dislike: true), method: :post) %>
@@ -11,7 +11,7 @@
       <%= f.text_area :body, placeholder: 'Reply' %><br>
       <%= f.hidden_field :reply_id, {value: comment.id} %>
       <%= f.hidden_field :pitch_id, {value: @pitch.id} %>
-      <%= f.submit 'Reply' %>
+      <%= f.submit 'Reply', class: 'btn btn-default' %>
     <% end %>
   </div>
 </p>

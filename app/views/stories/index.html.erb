@@ -1,20 +1,16 @@
-<h2>Today's Top Trending Stories</h2>
-<table class='trending-stories'>
-  <% @story_collection.stories.each do |story| %>
-    <tr>
-      <td>
-        <%= link_to story.title, story.url %>
-      </td>
-    </tr>
-    <table>
-      <tr>
-        <td>
-          Published <%= story.elapsed_time_since_published %> hours ago
-        </td>
-        <td>
-          <%= link_to 'Pitch Story', new_story_pitch_path(story.id) %>
-        </td>
-      </tr>
+<div class="container">
+  <div class="well">
+    <h2>Today's Top Trending Stories</h2>
+    <table class='table trending-stories'>
+      <% @story_collection.find_stories(params[:search]).each do |story| %>
+        <tr>
+          <td>
+            <%= link_to story.title, story.url %><br>
+            Published <%= story.elapsed_time_since_published %> hours ago |
+            <strong><%= link_to 'Pitch Story', new_story_pitch_path(story.id) %></strong>
+          </td>
+        </tr>
+      <% end %>
     </table>
-  <% end %>
-</table>
+  </div>
+</div>

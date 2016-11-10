@@ -23,7 +23,6 @@ describe 'unsubscribed user logs in' do
       click_on 'Denver, CO'
 
       expect(page).to have_content('News Stations Broadcasting to Denver, CO')
-      expect(page).to have_content(station.name)
     end
   end
 

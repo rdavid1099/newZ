@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="well">
+      <h3>Edit Profile Information</h3>
+      <%= form_for current_user do |f| %>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %><br><br>
+        <%= f.label :screen_name %><br>
+        <%= f.text_field :screen_name %><br><br>
+        <%= f.label :location %><br>
+        <%= f.text_field :location, placeholder: 'City, State' %><br><br>
+
+        <%= f.submit 'Save Changes', class: 'btn btn-default' %>
+      <% end %>
+    </div>
+</div>

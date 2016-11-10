@@ -12,6 +12,11 @@ class NytCollection < ApplicationRecord
     end
   end
 
+  def find_stories(search)
+    return stories if search.nil?
+    stories.where("title LIKE ? OR abstract LIKE ?", "%#{search}%", "%#{search}%")
+  end
+
   def top_five_stories
     stories.first(5)
   end

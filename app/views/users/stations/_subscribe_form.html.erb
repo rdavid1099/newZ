@@ -1,5 +1,5 @@
 <%= form_tag users_stations_subscriptions_path %>
   <% @nearby_stations.each do |station| %>
-    <%= check_box_tag station.id %> <%= station.name %><br>
+    <%= check_box_tag station.id %><a href='<%= station.url %>'><img src='<%= station.logo_path %>' class='station-logo'></a><br>
   <% end %>
-  <br><%= submit_tag "Subscribe" %>
+  <br><%= submit_tag "Subscribe", class: 'btn btn-default' %>
