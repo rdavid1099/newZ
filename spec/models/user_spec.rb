@@ -31,6 +31,88 @@ RSpec.describe User, type: :model do
     expect(user.stations.count).to eq(0)
   end
 
+  it 'creates a new like' do
+    user = create_user.first
+    create_pitch(user)
+    user.mark_like_dislike({ups: true,
+                            downs: nil,
+                            pitch_id: Pitch.last.id,
+                            comment_id: nil})
+
+    expect(user.likes_dislikes.count).to eq(1)
+    expect(Pitch.last.ups).to eq(1)
+    expect(Pitch.last.downs).to eq(0)
+  end
+
+  it 'creates a new dislike' do
+    user = create_user.first
+    create_pitch(user)
+    user.mark_like_dislike({ups: nil,
+                            downs: true,
+                            pitch_id: Pitch.last.id,
+                            comment_id: nil})
+
+    expect(user.likes_dislikes.count).to eq(1)
+    expect(Pitch.last.ups).to eq(0)
+    expect(Pitch.last.downs).to eq(1)
+  end
+
+  it 'does not allow duplicate likes' do
+    user = create_user.first
+    create_pitch(user)
+    user.mark_like_dislike({ups: true,
+                            downs: nil,
+                            pitch_id: Pitch.last.id,
+                            comment_id: nil})
+    user.mark_like_dislike({ups: true,
+                            downs: nil,
+                            pitch_id: Pitch.last.id,
+                            comment_id: nil})
+
+    expect(user.likes_dislikes.count).to eq(1)
+    expect(Pitch.last.ups).to eq(1)
+    expect(Pitch.last.downs).to eq(0)
+  end
+
+  it 'does not allow duplicate dislikes' do
+    user = create_user.first
+    create_pitch(user)
+    user.mark_like_dislike({ups: nil,
+                            downs: true,
+                            pitch_id: Pitch.last.id,
+                            comment_id: nil})
+    user.mark_like_dislike({ups: nil,
+                            downs: true,
+                            pitch_id: Pitch.last.id,
+                            comment_id: nil})
+
+    expect(user.likes_dislikes.count).to eq(1)
+    expect(Pitch.last.ups).to eq(0)
+    expect(Pitch.last.downs).to eq(1)
+  end
+
+  it 'it allows user to switch dislike to like' do
+    user = create_user.first
+    create_pitch(user)
+    user.mark_like_dislike({ups: nil,
+                            downs: true,
+                            pitch_id: Pitch.last.id,
+                            comment_id: nil})
+
+    expect(user.likes_dislikes.count).to eq(1)
+    expect(Pitch.last.ups).to eq(0)
+    expect(Pitch.last.downs).to eq(1)
+
+    user.mark_like_dislike({ups: true,
+                            downs: nil,
+                            pitch_id: Pitch.last.id,
+                            comment_id: nil})
+
+    expect(user.likes_dislikes.count).to eq(1)
+    expect(Pitch.last.ups).to eq(1)
+    expect(Pitch.last.downs).to eq(0)
+  end
+
   context 'validations' do
     it { is_expected.to have_many(:stations) }
   end

@@ -13,12 +13,16 @@ Rails.application.routes.draw do
     resources :pitches, only: [:new, :create, :show]
   end
 
+  resources :pitches, only: [:index]
+  resources :likes_dislikes, only: [:create]
   resources :stations, only: [:show]
   resources :community, only: [:index]
+  resources :comments, only: [:create]
 
+  get 'users/edit', to: 'users#edit'
+  put 'user', to: 'users#update'
+  patch 'user', to: 'users#update'
   get 'users/dashboard', to: 'users#show'
-  get 'users/location/edit', to: 'users#edit'
-  put 'users/location', to: 'users#update'
 
   namespace :users  do
     get '/stations/subscriptions/new', to: 'stations#new', as: 'new_station'

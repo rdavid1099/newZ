@@ -1,12 +1,16 @@
-<h1>Pitch Story</h1>
-<%= form_for [@story, @pitch] do |f| %>
-  <%= f.label :headline %><br>
-  <%= @story.title %><br>
-  <%= f.label :story_url, "Article URL" %><br>
-  <%= link_to @story.url, @story.url %><br>
-  <%= f.label :abstract, "Story Summary" %><br>
-  <%= @story.abstract %><br>
-  <%= f.label :body, "Why is this article important to you?" %><br>
-  <%= f.text_area :body %><br>
-  <%= f.submit "Pitch Story" %>
-<% end %>
+<div class="container">
+  <div class="well">
+    <h2>Pitch Story</h2>
+    <%= form_for [@story, @pitch] do |f| %>
+      <%= f.label :headline %><br>
+      <%= @story.title %><br>
+      <%= f.label :story_url, "Article URL" %><br>
+      <%= link_to @story.url, @story.url %><br>
+      <%= f.label :abstract, "Story Summary" %><br>
+      <%= @story.abstract %><br>
+      <%= f.label :body, "Why is this article important to you?" %><br>
+      <%= f.text_area :body %><br>
+      <%= f.submit "Pitch Story", class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>

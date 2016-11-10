@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="well">
+    <table class='table recent-pitches'>
+      <h3>Most Recent Pitches</h3>
+      <% @pitches.each do |pitch| %>
+        <tr>
+          <td>
+            <%= link_to pitch.headline, story_pitch_path(pitch.story.id, pitch.id) %><br>
+            Pitched by <strong><%= pitch.user.screen_name %></strong> |
+            <%= pluralize pitch.ups, 'Like' %> |
+            <%= pluralize pitch.downs, 'Dislike' %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

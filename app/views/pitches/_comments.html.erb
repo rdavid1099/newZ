@@ -1,0 +1,22 @@
+<p class="comment">
+  <strong><img src='<%= comment.user.profile_image %>'> <%= comment.user.screen_name %></strong><br>
+  &nbsp;&nbsp;<%= comment.body %><br>
+  <%= link_to((pluralize comment.ups, 'Like'), likes_dislikes_path(comment_id: comment.id, like: true), method: :post) %> |
+  <%= link_to((pluralize comment.downs, 'Dislike'), likes_dislikes_path(comment_id: comment.id, dislike: true), method: :post) %>
+  <div class="reply">
+    <%= link_to 'Reply', '#reply', onclick: 'return false;' %>
+  </div>
+  <div class='body' hidden>
+    <%= form_for @comment do |f| %>
+      <%= f.text_area :body, placeholder: 'Reply' %><br>
+      <%= f.hidden_field :reply_id, {value: comment.id} %>
+      <%= f.hidden_field :pitch_id, {value: @pitch.id} %>
+      <%= f.submit 'Reply', class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</p>
+<% comment.replies.each do |comment| %>
+<blockquote>
+  <%= render partial: 'comments', locals: {comment: comment} %>
+</blockquote>
+<% end %>

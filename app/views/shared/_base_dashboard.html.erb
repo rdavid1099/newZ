@@ -1,25 +1,53 @@
 <h1>Welcome, <%= current_user.screen_name %></h1>
-<table class='trending-stories'>
-  <h3>Today's Top Trending Stories</h3>
-  <% @story_collection.top_five_stories.each do |story| %>
-  <div class="story">
-    <tr>
-      <td>
-        <%= link_to story.title, story.url %>
-      </td>
-    </tr>
-    <table>
-      <tr>
-        <td>
-          Published <%= story.elapsed_time_since_published %> hours ago
-        </td>
-        <td>
-          <%= link_to 'Pitch Story', new_story_pitch_path(story.id) %>
-        </td>
-      </tr>
+<div class="row">
+  <div class="col-md-4 profile-container">
+    <p>
+      <img src="<%= current_user.profile_image %>"><br>
+      <%= current_user.name %><br>
+      <%= current_user.screen_name %><br>
+      <%= current_user.location %><br>
+      <%= link_to 'Edit Profile', users_edit_path %>
+    </p>
+    <div class="h-divider">
+    </div>
+    <p>
+      <h3>Your Station Subscriptions</h3>
+      <% unless current_user.stations.empty? %>
+        <%= render partial: 'station_subscriptions' %>
+      <% end %>
+      <%= link_to 'Subscribe to Stations', users_new_station_path %>
+    </p>
+  </div>
+  <div class="col-md-4 profile-container">
+    <table class='table user-pitches'>
+      <h3>Your Recent Story Pitches</h3>
+      <% current_user.pitches.each do |pitch| %>
+      <div class="pitch">
+        <tr>
+          <td>
+            <%= link_to pitch.headline, story_pitch_path(pitch.story.id, pitch.id) %><br>
+            <%= pluralize pitch.ups, 'Like' %> |
+            <%= pluralize pitch.downs, 'Dislike' %>
+          </td>
+        </tr>
+      </div>
+      <% end %>
     </table>
   </div>
-  <% end %>
-</table>
+  <div class="col-md-4 profile-container">
+    <table class='table trending-stories'>
+      <h3>Today's Top Trending Stories</h3>
+      <% @story_collection.top_five_stories.each do |story| %>
+      <div class="story">
+        <tr>
+          <td>
+            <%= link_to story.title, story.url %><br>
+            Published <%= story.elapsed_time_since_published %> hours ago |
+            <strong><%= link_to 'Pitch Story', new_story_pitch_path(story.id) %></strong>
+          </td>
+        </tr>
+      </div>
+      <% end %>
+    </table>
+  </div>
 </div>
-<h3>Your Recent Story Pitches</h3>

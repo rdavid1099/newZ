@@ -2,7 +2,12 @@ class User < ApplicationRecord
   has_many :stations_users
   has_many :stations, through: :stations_users
   has_many :pitches
+  has_many :comments
+  has_many :likes_dislikes
   enum role: [:viewer, :producer, :admin]
+
+  validates :screen_name, presence: true
+  validates :name, presence: true
 
   def self.from_omniauth(auth_info, role = nil)
     user = User.find_or_create_by(uid: auth_info.uid)
@@ -35,4 +40,23 @@ class User < ApplicationRecord
   def in_viewing_area?(station_id)
     !Station.near(location, 60).empty?
   end
+
+  def mark_like_dislike(params)
+    if relevant_likes_dislike(params[:pitch_id], params[:comment_id]).nil?
+      likes_dislikes.create(params)
+    else
+      update_like_dislike(params)
+    end
+  end
+
+  private
+    def relevant_likes_dislike(pitch_id, comment_id)
+      likes_dislikes.where('pitch_id = ? OR comment_id = ?',
+                            pitch_id,
+                            comment_id).first
+    end
+
+    def update_like_dislike(params)
+      relevant_likes_dislike(params[:pitch_id], params[:comment_id]).update(params)
+    end
 end
