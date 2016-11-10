@@ -1,8 +1,6 @@
-<h1>Welcome, <%= current_user.screen_name %></h1>
+<h2>Today's Top Trending Stories</h2>
 <table class='trending-stories'>
-  <h3>Today's Top Trending Stories</h3>
-  <% @story_collection.top_five_stories.each do |story| %>
-  <div class="story">
+  <% @story_collection.stories.each do |story| %>
     <tr>
       <td>
         <%= link_to story.title, story.url %>
@@ -18,7 +16,5 @@
         </td>
       </tr>
     </table>
-  </div>
   <% end %>
 </table>
-<h3>Your Recent Story Pitches</h3>

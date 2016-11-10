@@ -37,4 +37,23 @@ class User < ApplicationRecord
   def in_viewing_area?(station_id)
     !Station.near(location, 60).empty?
   end
+
+  def mark_like_dislike(params)
+    if relevant_likes_dislike(params[:pitch_id], params[:comment_id]).nil?
+      likes_dislikes.create(params)
+    else
+      update_like_dislike(params)
+    end
+  end
+
+  private
+    def relevant_likes_dislike(pitch_id, comment_id)
+      likes_dislikes.where('pitch_id = ? OR comment_id = ?',
+                            pitch_id,
+                            comment_id).first
+    end
+
+    def update_like_dislike(params)
+      relevant_likes_dislike(params[:pitch_id], params[:comment_id]).update(params)
+    end
 end
