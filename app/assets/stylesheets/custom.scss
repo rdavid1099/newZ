@@ -27,6 +27,14 @@ blockquote {
   background-color: $accent-color2;
 }
 
+.lg-container {
+  background-color: $primary-color;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 .container {
   background-color: $primary-color;
   border-radius: 10px;
