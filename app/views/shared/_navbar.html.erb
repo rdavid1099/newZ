@@ -23,7 +23,7 @@
         <% if logged_in? %>
         <%= render partial: 'shared/logged_in_menu' %>
         <% else %>
-        <li><%= link_to 'Login Using Twitter', twitter_login_path %></li>
+        <li><a href='#' id='navbar-signin'>Sign In</a></li>
         <% end %>
       </ul>
     </div>
