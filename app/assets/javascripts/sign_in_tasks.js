@@ -1,23 +1,27 @@
 $(document).ready(function () {
+  var $signinBody = $('#signin-body')
+  var $signinForm = $('#signin-form')
+
+  $('#signin-form').dialog({
+    autoOpen: false,
+    position: { my: 'center', at: 'top+350', of: window },
+    width: 1000,
+    resizable: false,
+    modal: true,
+    show: true,
+    hide: true,
+    draggable: false
+  })
+
   $('#navbar-signin').on('click', function (event) {
     event.preventDefault()
-    $('#signin-form').dialog({
-      autoOpen: true,
-      position: { my: 'center', at: 'top+350', of: window },
-      width: 1000,
-      resizable: false,
-      title: 'Sign In',
-      modal: true,
-      open: '<h1>HEY</h1>',
-      buttons: {
-        'Button 1': function() {
-          console.log('Button 1')
-        },
-        Cancel: function () {
-          console.log('Forget it')
-        }
-      }
-    })
+    $signinForm.dialog('open')
+    $signinBody.addClass('is-visible')
+    return false
   })
-  return false
+
+  $signinBody.on('click', function () {
+    $signinForm.dialog('close')
+    $signinBody.removeClass('is-visible')
+  })
 })

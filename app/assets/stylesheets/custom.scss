@@ -8,6 +8,10 @@ body {
   background-repeat:repeat;
 }
 
+#signin-body.is-visible {
+  background-color: red;
+}
+
 h1.header-text {
   font-style: italic;
   text-align: center;
@@ -65,4 +69,8 @@ blockquote {
 
 .btn-primary {
   background-color: $secondary-color;
+}
+
+#signin-form {
+  background: green;
 }
